@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-test-staging
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Thunberg087/web-test-config
+    path: app
+    targetRevision: main
+    helm:
+      valueFiles:
+        - envs/staging/values.yaml
+        - envs/staging/version.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
