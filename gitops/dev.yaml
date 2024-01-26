@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-test-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Thunberg087/web-test-config
+    path: app
+    targetRevision: main
+    helm:
+      valueFiles:
+        - envs/dev/values.yaml
+        - envs/dev/version.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
