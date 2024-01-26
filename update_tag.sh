@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# Set the new tag number
-new_tag="$1"  # You can replace this with the desired tag
+new_tag="$1" 
 
 # File path
-file_path="path/to/your/file.yaml"  # Replace with the actual path to your file
+file_path="./app/envs/dev/version.yaml"  
 
 # Check if the file exists
 if [ -f "$file_path" ]; then
