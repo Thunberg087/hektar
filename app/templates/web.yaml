@@ -14,7 +14,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.appName }}
 spec:
-  replicas: 4
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.appName }}
@@ -24,7 +24,7 @@ spec:
         app: {{ .Values.appName }}
     spec:
       containers:
-        - name: nginx
-          image: nginx:latest
+        - name: web
+          image: {{ .Values.deployment.image.name }}:{{ .Values.deployment.image.tag }}
           ports:
             - containerPort: 80
