@@ -1,4 +1,4 @@
 deployment:
   image:
     name: thunberg087/web-test
-    tag: 2.3.8
+    tag: 2.4.0
